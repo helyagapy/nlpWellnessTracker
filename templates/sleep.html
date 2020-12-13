@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sleep Log
+{% endblock %}
+
+{% block main %}
+    <h1 class="pad color">Log your Sleep:</h1>
+    <p>Enter daily total of minutes slept</p>
+
+    <form action="/sleep" method="post">
+        <div class="form-group">
+            <label for="date">Date: </label>
+            <input type="date" id="date" name="date">
+            <br><br>
+            <label for="hours">Total hours slept: </label>
+            <input autocomplete="off" autofocus class="form-control" name="hours" placeholder="0" type="number" min="0">
+            <br><br>
+        </div>
+        <button class="btn btn-primary" type="submit">Save</button>
+    </form>
+
+{% endblock %}

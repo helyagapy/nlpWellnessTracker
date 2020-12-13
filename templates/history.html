@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped" >
+        <thead><h2>Sentiment Analysis of Journal Entries</h2>
+            <tr>
+                <th>Date/Time of Entry</th>
+                <th>Negativity</th>
+                <th>Neutrality</th>
+                <th>Positivity</th>
+                <th>Compound Score</th>
+            </tr>
+        </thead>
+            {% for entry in entries %}
+            <tr>
+                <td>{{ entry.timestamp }}</td>
+                <td>{{ entry.negative }}</td>
+                <td>{{ entry.neutral }}</td>
+                <td>{{ entry.positive }}</td>
+                <td>{{ entry.compound }}</td>
+            </tr>
+            {% endfor %}
+    </table>
+    <br><br>
+
+    <table class="table table-striped">
+        <thead><h2>Exercise Record</h2>
+            <tr>
+                <th>Date</th>
+                <th>Minutes Exercised</th>
+                <th>Intensity</th>
+            </tr>
+        </thead>
+            {% for exercise in exercises %}
+            <tr>
+                <td>{{ exercise.date }}</td>
+                <td>{{ exercise.minutes }}</td>
+                <td>{{ exercise.intensity }}</td>
+            </tr>
+            {% endfor %}
+    </table>
+    <br><br>
+
+    <table class="table table-striped">
+        <thead><h2>Sleep Record</h2>
+            <tr>
+                <th>Date</th>
+                <th>Hours Slept</th>
+            </tr>
+        </thead>
+            {% for slept in sleep %}
+            <tr>
+                <td>{{ slept.date }}</td>
+                <td>{{ slept.hours }}</td>
+            </tr>
+            {% endfor %}
+    </table>
+
+{% endblock %}

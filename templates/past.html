@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Past Entries
+{% endblock %}
+
+{% block main %}
+    {% for item in old %}
+    <h2>This was your entry from {{item.timestamp }} : </h2>
+    <div class="content"> {{ item.text }} </div>
+    {% endfor %}
+{% endblock %}

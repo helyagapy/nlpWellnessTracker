@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Score for Sentiment analysis
+{% endblock %}
+
+{% block main %}
+    <h3>Your entry today exhibits the following sentiment scores</h3>
+    <ul class="list-unstyled">
+        {% for ent in entry %}
+        <li><h4>Positive valence: </h4>{{ ent.positive }}</li>
+        <li><h4>Neutral valence: </h4>{{ ent.neutral }}</li>
+        <li><h4>Negative valence: </h4>{{ ent.negative }}</li>
+        <br><br>
+        <li><h4 style="color: #cb997e">Compound Score: {{ ent.compound }}</h4></li>
+        {% endfor %}
+    </ul>
+    <p class="content"> The Compound Score is the normalized cumulative sum of the valence scores. It ranges between -1 (most extreme negative) and +1 (most extreme positive).</p>
+
+{% endblock %}

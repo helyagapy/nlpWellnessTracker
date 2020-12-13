@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <script>
+    // Using template from https://www.the-art-of-web.com/javascript/validate-password/#box1 with amendments
+        function checkForm(form)
+        {
+            if(form.password.value != "" && form.password.value == form.confirmation.value)
+            {
+              if(form.password.value.length < 6)
+              {
+                alert("Password must contain at least six characters");
+                form.password.focus();
+                return false;
+              }
+              if(form.password.value == form.username.value)
+              {
+                alert("Password must be different from Username");
+                form.password.focus();
+                return false;
+              }
+            }
+            else
+            {
+              alert("Please check that your passwords match");
+              form.password.focus();
+              return false;
+            }
+        }
+    </script>
+
+    <form action="/register" method="post" onsubmit="return checkForm(this);">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password" placeholder="Password" type="password">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="confirmation" placeholder="Confirm password" type="password">
+        </div>
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+
+    <div>
+        <p><br>Password Requirements:
+            <ul class="list-unstyled">
+                <li>Must have at least six characters</li>
+                <li>Must be different from username</li>
+            </ul>
+        </p>
+    </div>
+{% endblock %}

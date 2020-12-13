@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sentiment plot
+{% endblock %}
+
+{% block main %}
+
+  <!--make the html element to contain the plot. Plot uses Chart.js: https://www.chartjs.org/-->
+  <canvas id="myplot" width="800" height="450"></canvas>
+  <p style="text-align: left; width:200px" class="small text-muted">*The Compound Score ranges from -1 to +1, with -1 being the most negative, and +1 being the most positive</p>
+
+	<script>
+	  // This is pulling data from the flask app. The data comes from a SQL search query that pulls all the timestamps and compound scores from the user's text entries and is then converted to json for use with Chart.js.
+    var data = {{ data|tojson }};
+    new Chart("myplot", {
+      type: 'line',
+      data: {
+        // map timestamps/entries as x axis and sentiment compound scores as y axis. Map method found on https://stackoverflow.com/questions/60460274/chartjs-format-datetime-x-axis-when-displaying-data-from-mysql-table
+        labels: data.map(o => o.x),
+        datasets: [{
+          fill: false,
+          borderColor: "#e29578",
+          data: data.map(o => o.y),
+          pointRadius: 10
+        }],
+      },
+      // the following options area is used to define the title, x and y axes, and customizations.
+      options: {
+        title: {
+          display: true,
+          text: 'Your Sentiment Across Journal Entries',
+          padding: 30,
+          fontColor: "#e29578",
+          fontSize: 20,
+          fontFamily: 'Trebuchet MS'
+        },
+        legend: {
+          display: false
+        },
+        scales: {
+          xAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Entries',
+              padding: 10,
+              fontColor: "#e29578",
+              fontSize: 18,
+              fontFamily: 'Trebuchet MS'
+            },
+            type: 'category',
+            time: {
+              unit: 'day'
+            },
+            ticks: {
+              padding: 20
+            }
+          }],
+          yAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Compound Score*',
+              fontColor: "#e29578",
+              fontSize: 18,
+              fontFamily: 'Trebuchet MS'
+            },
+            ticks: {
+              suggestedMin: -1,
+              suggestedMax: 1,
+              padding: 20
+            }
+          }]
+        }
+      }
+    });
+    </script>
+{% endblock %}

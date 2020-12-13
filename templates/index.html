@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Homepage
+{% endblock %}
+
+{% block main %}
+    <h1 class="color">Welcome to your Wellness Tracker</h1>
+    <br><br>
+    <div class="content">
+    <ul class="list-unstyled">
+        <li><a href="/journal">Enter and save text entries</a></li>
+        <li><a href="/exercise">Log daily exercise accomplishments</a></li>
+        <li><a href="/sleep">Log daily sleep hours</a></li>
+    </ul>
+    </div>
+    <img src="static/relaxcat.png" alt="relaxcat" style="width: 50%; height: 50%">
+
+{% endblock %}

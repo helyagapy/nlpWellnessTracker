@@ -62,3 +62,6 @@ A SQLite database is configured to store user accounts, journal entries and sent
 
 ## Walkthrough of User Experience
 A new user would first need to register an account. After registration, they would remain logged into the account and can then access the different functions of the app. They can visit separate pages to log journals, log exercise minutes, and log sleep hours. After submitting a journal entry, the user would immediately receive results from sentiment analysis conducted on the entry. They can also see the results in a chart by visitng the "History" page or in a line graph by visiting the "Sentiment Plot" page. If users want to see their old entries, they can visit the "See Old Entries" page, select a timestamp from a drop down menu of their past entries and then be redirected to another page with the text. After users provide exercise and sleep data, they will also be able to see those entries on the "History" page.
+
+## Video Walkthrough
+https://youtu.be/Gx7Uag6kmAI

@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Exercise Log
+{% endblock %}
+
+{% block main %}
+    <h1 class="pad color">Log your Exercise:</h1>
+    <p>Enter daily total of minutes exercised</p>
+
+    <form action="/exercise" method="post">
+        <div class="form-group">
+            <label for="date">Date:  </label>
+            <input type="date" id="date" name="date">
+            <br><br>
+            <label for="minutes">Total minutes exercised:  </label>
+            <input autocomplete="off" autofocus class="form-control" name="minutes" placeholder="0" type="number" min="0">
+            <br><br>
+            <label for="intensity">Intensity of exercise:  </label>
+            <select name="intensity" id="intensity">
+                <option value="low">low</option>
+                <option value="moderate">moderate</option>
+                <option value="vigorous">vigorous</option>
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Save</button>
+    </form>
+{% endblock %}

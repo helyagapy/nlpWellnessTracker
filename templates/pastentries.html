@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Past Entries
+{% endblock %}
+
+{% block main %}
+    <h1 class="pad color">Select a date from your past entries:</h1>
+    <form name="entries" action="/selectpastentries" method="POST">
+      <label for="Past Entries">Select Date of Past Entry</label>
+        <select name="options">
+            {% for timestamp in timestamps %}
+            <option value="{{ timestamp.timestamp }}" SELECTED>{{ timestamp.timestamp }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+{% endblock %}

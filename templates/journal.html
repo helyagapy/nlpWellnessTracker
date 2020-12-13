@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Journal
+{% endblock %}
+
+{% block main %}
+    <h2 class="pad color"> Today's Entry </h2>
+    <form action="/journal" method="post">
+        <div id="datetime"></div>
+        <textarea id="entry" name="entry" rows="15" cols="70" maxlength="524288"></textarea>
+            <div class="pad" id='char'></div>
+            <div style="padding-bottom: 20px;">
+                <input type="submit" value="Save">
+            </div>
+            <p> Click "Save" to record your entry and to immediately receive the results of the sentiment analysis conducted</p>
+    </form>
+
+    <script>
+    // Javascript to display current browser date and time in MM/DD/YY and 12-hour format respectively
+        var today = new Date();
+        var date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
+        var min = ('0' + today.getMinutes()).slice(-2);
+        var hour = today.getHours()
+        var ampm = hour >= 12 ? 'pm' : 'am';
+        hour = hour % 12;
+        hour = hour ? hour : 12;
+        var time = hour + ":" + min;
+        var dateTime = 'DATE '+ date + ' | '+' TIME '+ time + ampm;
+        document.getElementById("datetime").innerHTML = dateTime;
+
+    // Javascript to display remaining available characters for textarea
+        document.getElementById('entry').onkeyup = function ()
+        {
+            document.getElementById('char').innerHTML = (524288 - this.value.length) + " characters remaining";
+        };
+    </script>
+
+{% endblock %}
